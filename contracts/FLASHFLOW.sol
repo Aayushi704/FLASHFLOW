@@ -172,15 +172,13 @@ contract Project is ReentrancyGuard, Ownable {
         
         emit TokenSupported(token, feeInBasisPoints);
     }
-    
     function updateFlashLoanFee(address token, uint256 feeInBasisPoints) external onlyOwner {
         if (!supportedTokens[token]) revert UnsupportedToken();
         if (feeInBasisPoints > MAX_FLASH_LOAN_FEE) revert InvalidFee();
         
         flashLoanFees[token] = feeInBasisPoints;
-    }
-    
-    // View functions
+    } 
+    // View functions updated
     function getAvailableLiquidity(address token) external view returns (uint256) {
         return liquidityPools[token];
     }
